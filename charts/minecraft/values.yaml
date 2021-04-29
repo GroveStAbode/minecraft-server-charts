@@ -55,12 +55,13 @@ initContainers: []
 
 extraVolumes:
   - volumeMounts:
-      - name: nfs
+      - name: modpacks
         mountPath: /modpacks
         readOnly: true
     volumes:
-      - name: nfs
-        server: truenas.grovest.io
+      - name: modpacks
+        hostPath:
+        # directory location on host
         path: /mnt/modpacks
 
 minecraftServer:
