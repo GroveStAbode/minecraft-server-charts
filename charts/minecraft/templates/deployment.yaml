@@ -99,6 +99,8 @@ spec:
         - name: FTB_LEGACYJAVAFIXER
           value: {{ default false .Values.minecraftServer.ftbLegacyJavaFixer | quote }}
         {{- end }}
+        - name: CF_SERVER_MOD
+          value: {{ .Values.minecraftServer.cfServerMod | quote }}
         - name: VERSION
           value: {{ .Values.minecraftServer.version | quote }}
         - name: DIFFICULTY
