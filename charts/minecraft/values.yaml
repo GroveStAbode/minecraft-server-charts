@@ -61,8 +61,8 @@ extraVolumes:
     volumes:
       - name: modpacks
         hostPath:
-        # directory location on host
-        path: /mnt/modpacks
+          # directory location on host
+          path: /mnt/modpacks
 
 minecraftServer:
   # This must be overridden, since we can't accept this for the user.
