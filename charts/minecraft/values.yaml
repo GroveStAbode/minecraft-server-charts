@@ -8,8 +8,8 @@ imagePullSecret: ""
 ##
 resources:
   requests:
-    memory: 512Mi
-    cpu: 500m
+    memory: 8096Mi
+    cpu: 2
 
 # upgrade strategy type (e.g. Recreate or RollingUpdate)
 strategyType: Recreate
@@ -53,20 +53,15 @@ startupProbe:
 #         readOnly: true
 initContainers: []
 
-# extraVolumes:
-#   - volumeMounts:
-#       - name: nfs
-#         mountPath: /mnt/volume
-#         readOnly: true
-#     volumes:
-#       - name: nfs
-#         server: some.nfs.server.com
-#         path: /
-#         mountOptions:
-#           - port=2049
-#           - hard
-#           - vers=4
-extraVolumes: []
+extraVolumes:
+  - volumeMounts:
+      - name: modpacks
+        mountPath: /modpacks
+        readOnly: true
+    volumes:
+      - name: modpacks
+        server: truenas.grovest.io
+        path: /mnt/modpacks
 
 minecraftServer:
   # This must be overridden, since we can't accept this for the user.
@@ -74,7 +69,9 @@ minecraftServer:
   # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
   version: "LATEST"
   # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA"
-  type: "VANILLA"
+  type: "CURSEFORGE"
+  # Sets the modpack zip location when "CURSEFORGE" is set above
+  cfServerMod: /modpacks/Valhelsia+3-3.3.0-SERVER.zip
   # If type is set to FORGE, this sets the version; this is ignored if forgeInstallerUrl is set
   forgeVersion:
   # If type is set to SPONGEVANILLA, this sets the version
@@ -92,11 +89,11 @@ minecraftServer:
   # Set to true if running Feed The Beast and get an error like "unable to launch forgemodloader"
   ftbLegacyJavaFixer: false
   # One of: peaceful, easy, normal, and hard
-  difficulty: easy
+  difficulty: hard
   # A comma-separated list of player names to whitelist.
   whitelist:
   # A comma-separated list of player names who should be admins.
-  ops:
+  ops: cebarks
   # A server icon URL for server listings. Auto-scaled and transcoded.
   icon:
   # Max connected players.
@@ -126,13 +123,13 @@ minecraftServer:
   # Determines if villagers will be spawned.
   spawnNPCs: true
   # Max view distance (in chunks).
-  viewDistance: 10
+  viewDistance: 20
   # Define this if you want a specific map generation seed.
   levelSeed:
   # One of: creative, survival, adventure, spectator
   gameMode: survival
   # Message of the Day
-  motd: "Welcome to Minecraft on Kubernetes!"
+  motd: "Grove St Abode || Valhelsia 3"
   # If true, enable player-vs-player damage.
   pvp: false
   # One of: DEFAULT, FLAT, LARGEBIOMES, AMPLIFIED, CUSTOMIZED
@@ -152,7 +149,7 @@ minecraftServer:
   # Check accounts against Minecraft account service.
   onlineMode: true
   # If you adjust this, you may need to adjust resources.requests above to match.
-  memory: 1024M
+  memory: 4096M
   # General JVM options to be passed to the Minecraft server invocation
   jvmOpts: ""
   # Options like -X that need to proceed general JVM options
