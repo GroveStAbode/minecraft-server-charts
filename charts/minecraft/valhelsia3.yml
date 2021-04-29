@@ -70,6 +70,8 @@ minecraftServer:
   version: "LATEST"
   # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA"
   type: "CURSEFORGE"
+  # Sets the modpack zip location when "CURSEFORGE" is set above
+  cfServerMod: /modpacks/Valhelsia+3-3.3.0-SERVER.zip
   # If type is set to FORGE, this sets the version; this is ignored if forgeInstallerUrl is set
   forgeVersion:
   # If type is set to SPONGEVANILLA, this sets the version
