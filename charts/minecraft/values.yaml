@@ -1,6 +1,6 @@
 # ref: https://hub.docker.com/r/itzg/minecraft-server/
 image: itzg/minecraft-server
-imageTag: latest
+imageTag: java8
 imagePullSecret: ""
 
 ## Configure resource requests and limits
