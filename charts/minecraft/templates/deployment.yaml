@@ -102,7 +102,7 @@ spec:
         - name: CF_SERVER_MOD
           value: {{ .Values.minecraftServer.cfServerMod | quote }}
         - name: USE_MODPACK_START_SCRIPT
-          value: "false"
+          value: "true"
         - name: VERSION
           value: {{ .Values.minecraftServer.version | quote }}
         - name: DIFFICULTY
